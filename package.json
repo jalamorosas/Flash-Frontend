@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
     "next": "13.3.4",
+    "openai": "^3.2.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-flip-toolkit": "^7.0.17",
     "tailwindcss": "3.3.2"
   }
 }
