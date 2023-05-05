@@ -1,34 +1,42 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
-import heic2any from 'heic2any';
+import heicConvert from 'heic-convert';
 
 const Upload = ({ onFlashcardsGenerated }) => {
 	const [ file, setFile ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(false);
 
-	const handleFileChange = async (e) => {
-		const selectedFile = e.target.files[0];
-		if (supportedFormats.includes(selectedFile.type)) {
-			setFileError('');
-
-			if (selectedFile.type === 'image/heic') {
-				const heic2any = (await import('heic2any')).default;
-				const convertedFile = await heic2any({
-					blob: selectedFile,
-					toType: 'image/jpeg',
-					quality: 0.8
-				});
-
-				setFile(convertedFile);
-			} else {
-				setFile(selectedFile);
-			}
-		} else {
-			setFileError('Unsupported file format. Please upload a valid image file.');
-			setFile(null);
-		}
-	};
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
+    if (supportedFormats.includes(selectedFile.type)) {
+      setFileError('');
+  
+      if (selectedFile.type === 'image/heic') {
+        const buffer = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = (error) => reject(error);
+          reader.readAsArrayBuffer(selectedFile);
+        });
+  
+        const resultBuffer = await heicConvert({
+          buffer,
+          format: 'JPEG',
+          quality: 0.8,
+        });
+  
+        const convertedFile = new File([resultBuffer], selectedFile.name.replace('.HEIC', '.jpg'), { type: 'image/jpeg' });
+  
+        setFile(convertedFile);
+      } else {
+        setFile(selectedFile);
+      }
+    } else {
+      setFileError('Unsupported file format. Please upload a valid image file.');
+      setFile(null);
+    }
+  };
 
 	const convertHeicToJpg = async (heicFile) => {
 		const convertedFile = await heic2any({
