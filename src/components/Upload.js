@@ -1,33 +1,41 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import heic2any from 'heic2any';
 
 const Upload = ({ onFlashcardsGenerated }) => {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [fileError, setFileError] = useState('');
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const supportedFormats = [
+    'image/jpeg',
+    'image/png',
+    'image/bmp',
+    'image/tiff',
+    'image/x-windows-bmp',
+    'image/heic',
+  ];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
+    if (supportedFormats.includes(selectedFile.type)) {
+      setFileError('');
 
-    setIsLoading(true);
-    const formData = new FormData();
-    formData.append('image', file);
+      if (selectedFile.type === 'image/heic') {
+        const convertedFile = await heic2any({
+          blob: selectedFile,
+          toType: 'image/jpeg',
+          quality: 0.8,
+        });
 
-    try {
-      const response = await axios.post('https://flashify-backend.herokuapp.com/api/generate_flashcards', formData);
-      const flashcards = response.data;
-      console.log(flashcards)
-      console.log(typeof flashcards)
-      // Call the callback function to update flashcards in HomePage
-      onFlashcardsGenerated(flashcards);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+        setFile(convertedFile);
+      } else {
+        setFile(selectedFile);
+      }
+    } else {
+      setFileError('Unsupported file format. Please upload a valid image file.');
+      setFile(null);
     }
   };
 
