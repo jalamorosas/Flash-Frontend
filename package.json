@@ -13,7 +13,6 @@
     "axios": "^1.4.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
-    "heic-convert": "^1.2.4",
     "next": "^13.3.4",
     "openai": "^3.2.1",
     "postcss": "8.4.23",
