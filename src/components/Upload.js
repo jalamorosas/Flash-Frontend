@@ -5,7 +5,8 @@ import { ClipLoader } from 'react-spinners';
 const Upload = ({ onFlashcardsGenerated }) => {
 	const [ file, setFile ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(false);
-
+  const [fileError, setFileError] = useState('');
+  
   const supportedFormats = [
     'image/jpeg',
     'image/png',
