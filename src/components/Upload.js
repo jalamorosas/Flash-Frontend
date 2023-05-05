@@ -18,7 +18,7 @@ const Upload = ({ onFlashcardsGenerated }) => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/generate_flashcards', formData);
+      const response = await axios.post('https://flashify-backend.herokuapp.com/api/generate_flashcards', formData);
       const flashcards = response.data;
       console.log(flashcards)
       console.log(typeof flashcards)
