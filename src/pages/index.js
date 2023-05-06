@@ -18,7 +18,7 @@ function HomePage() {
         
         {/* Add the Upload component and pass the setFlashcards function */}
         <Upload onFlashcardsGenerated={setFlashcards} />
-        
+      
         <FlashcardList flashcards={flashcards} />
       </div>
     </div>

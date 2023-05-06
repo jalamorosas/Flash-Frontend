@@ -6,7 +6,7 @@ const Upload = ({ onFlashcardsGenerated }) => {
 	const [ file, setFile ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(false);
   const [fileError, setFileError] = useState('');
-  
+
   const supportedFormats = [
     'image/jpeg',
     'image/png',
@@ -23,6 +23,7 @@ const Upload = ({ onFlashcardsGenerated }) => {
       setFile(selectedFile);
       
     } else {
+      console.log("unsupported format")
       setFileError('Unsupported file format. Please upload a valid image file.');
       setFile(null);
     }
@@ -72,6 +73,7 @@ const Upload = ({ onFlashcardsGenerated }) => {
 	return (
 		<div className="bg-white p-6 rounded shadow-md w-96">
 			<h1 className="mt-0 text-center text-2xl font-bold text-gray-900 mb-4">Upload Image</h1>
+      <p className="mt-0 text-left text-gray-900 mb-4">iPhone photos in HEIC format not supported at this time</p>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<input
 					type="file"
