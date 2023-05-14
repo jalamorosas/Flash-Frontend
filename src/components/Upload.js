@@ -73,7 +73,7 @@ const Upload = ({ onFlashcardsGenerated }) => {
 	return (
 		<div className="bg-white p-6 rounded shadow-md w-96">
 			<h1 className="mt-0 text-center text-2xl font-bold text-gray-900 mb-4">Upload Image</h1>
-      <p className="mt-0 text-left italic text-gray-800 mb-4">please upload a jpeg or png</p>
+      <p className="mt-0 text-left italic text-gray-800 mb-4">please upload a jpeg or png to be converted into flashcards</p>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<input
 					type="file"
