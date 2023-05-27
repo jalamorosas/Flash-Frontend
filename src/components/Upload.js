@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import styles from '../styles/Upload.module.css'
 
 const Upload = ({ onFlashcardsGenerated }) => {
 	const [ file, setFile ] = useState(null);
@@ -71,9 +72,9 @@ const Upload = ({ onFlashcardsGenerated }) => {
 	};
 
 	return (
-		<div className="bg-white p-6 rounded shadow-md w-96">
-			<h1 className="mt-0 text-center text-2xl font-bold text-gray-900 mb-4">Upload Image</h1>
-      <p className="mt-0 text-left italic text-gray-800 mb-4">please upload a jpeg or png to be converted into flashcards</p>
+		<div className={`p-6 w-96 ${styles.upload}`}>
+			<h1 className="mt-0 text-center text-xl text-white mb-4">Upload</h1>
+      <p className="mt-0 text-left italic text-white mb-4">please upload a jpeg or png</p>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<input
 					type="file"

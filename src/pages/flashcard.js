@@ -15,18 +15,20 @@ function HomePage() {
 
   return (
     <>
-
       <div className={styles.container}>
         <Navbar />
 
         <div className=" flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md space-y-8">
-            <h1 className="mt-6 text-center text-4xl font-extrabold text-white">Generate Flashcards</h1>
-
+            <br></br>
+            
             {/* Add the Upload component and pass the setFlashcards function */}
             <Upload onFlashcardsGenerated={setFlashcards} />
+            <br></br>
+            
 
             <FlashcardList flashcards={flashcards} />
+            <br></br>
           </div>
         </div>
       </div>

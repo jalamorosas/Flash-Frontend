@@ -1,0 +1,21 @@
+.upload {
+
+  background: linear-gradient(111.56deg, rgba(15, 14, 24, 0.5) -2.6%, rgba(14, 13, 23, 0) 104%);
+  /* light/white 15% */
+
+  border: 2.15458px solid rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(49.1857px 49.1857px 39.3486px rgba(35, 42, 62, 0.12));
+  backdrop-filter: blur(53.8646px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 19.6743px;
+}
+
+.upload h1 {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 49px;
+}
+
