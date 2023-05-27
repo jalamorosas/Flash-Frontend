@@ -1,42 +1,47 @@
-import React, { useState } from 'react';
-import Link from 'next/link'; // Make sure to import the Link component
-import FlashcardList from '../components/FlashcardList';
-import CreateFlashcardForm from '../components/CreateFlashcardForm';
-import Upload from '../components/Upload';
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import Navbar from '../components/Navbar';
+import Link from 'next/link';
 
-function HomePage() {
-  const [flashcards, setFlashcards] = useState(sampleFlashcards);
-
-  const handleCreateFlashcard = (newFlashcard) => {
-    setFlashcards((prevFlashcards) => [...prevFlashcards, newFlashcard]);
-  };
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md space-y-8">
-        <h1 className="mt-6 text-center text-4xl font-extrabold text-gray-900">Flashify</h1>
-        
-        {/* Add the Upload component and pass the setFlashcards function */}
-        <Upload onFlashcardsGenerated={setFlashcards} />
-      
-        <FlashcardList flashcards={flashcards} />
+    <>
+      <div className={styles.container}>
+        <Navbar />
+        <Head>
+          <title>Flashify</title>
+          <meta name="description" content="Welcome to my homepage" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <main className={styles.main}>
+          <div className={styles.jumbo}>
+            <h1 className={styles.heading}>
+              Learn <b>faster</b> with the power of AI
+            </h1>
+            <p className={styles.description}>
+              Our innovate flashcard generation software leverages the power of GPT 3.5 for quick and simple flashcard creation.
+            </p>
+            <Link href="/flashcard" className={styles.navLink}>
+              <button className={styles.jumboButton}>
+                Try now
+              </button>
+            </Link>
+            
+          </div>
+          <div className={styles.flashcards}>
+            <div className={styles.flashcard2}>
+              <h1>The mitochondria</h1>
+            </div>
+            <div className={styles.flashcard1}>
+              <h1>What is the powerhouse of the cell?</h1>
+            </div>
+          </div>
+        </main>
+
       </div>
-    </div>
-  );
+    </>
+
+
+  )
 }
-
-const sampleFlashcards = [
-  {
-    id: 1,
-    question: 'What is React?',
-    answer: 'A JavaScript library for building user interfaces',
-  },
-  {
-    id: 2,
-    question: 'What is a component?',
-    answer: 'A reusable piece of code that manages its own content, presentation, and behavior',
-  },
-  // Add more sample flashcards here
-];
-
-export default HomePage;
